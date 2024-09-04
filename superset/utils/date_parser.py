@@ -209,6 +209,38 @@ def get_since_until(  # pylint: disable=too-many-arguments,too-many-locals,too-m
         time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, YEAR), YEAR) : DATETRUNC(DATETIME('today'), YEAR)"  # pylint: disable=line-too-long,useless-suppression
     if (
         time_range
+        and time_range.startswith("Last day")
+        and separator not in time_range
+    ):
+        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, DAY), DAY) : DATETIME('today')"
+    if (
+        time_range
+        and time_range.startswith("Last week")
+        and separator not in time_range
+    ):
+        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, WEEK), WEEK) : DATETRUNC(DATETIME('today'), WEEK)"  # pylint: disable=line-too-long,useless-suppression
+    if (
+        time_range
+        and time_range.startswith("Last month")
+        and separator not in time_range
+    ):
+        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, MONTH), MONTH) : DATETRUNC(DATETIME('today'), MONTH)"  # pylint: disable=line-too-long,useless-suppression
+    if (
+        time_range
+        and time_range.startswith("Last year")
+        and separator not in time_range
+    ):
+        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, YEAR), YEAR) : DATETRUNC(DATETIME('today'), YEAR)"
+
+    if (
+        time_range
+        and time_range.startswith("Last quarter")
+        and separator not in time_range
+    ):
+        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, QUARTER), QUARTER) : DATETRUNC(DATETIME('today'), QUARTER)"
+
+    if (
+        time_range
         and time_range.startswith("Current day")
         and separator not in time_range
     ):
@@ -240,15 +272,15 @@ def get_since_until(  # pylint: disable=too-many-arguments,too-many-locals,too-m
 
     if time_range and separator in time_range:
         time_range_lookup = [
-            (
-                r"^last\s+(day|week|month|quarter|year)$",
-                lambda unit: f"DATEADD(DATETIME('{_relative_start}'), -1, {unit})",
-            ),
-            (
-                r"^last\s+([0-9]+)\s+(second|minute|hour|day|week|month|year)s?$",
-                lambda delta,
-                unit: f"DATEADD(DATETIME('{_relative_start}'), -{int(delta)}, {unit})",  # pylint: disable=line-too-long,useless-suppression
-            ),
+            # (
+            #     r"^last\s+(day|week|month|quarter|year)$",
+            #     lambda unit: f"DATEADD(DATETIME('{_relative_start}'), -1, {unit})",
+            # ),
+            # (
+            #     r"^last\s+([0-9]+)\s+(second|minute|hour|day|week|month|year)s?$",
+            #     lambda delta,
+            #     unit: f"DATEADD(DATETIME('{_relative_start}'), -{int(delta)}, {unit})",  # pylint: disable=line-too-long,useless-suppression
+            # ),
             (
                 r"^next\s+([0-9]+)\s+(second|minute|hour|day|week|month|year)s?$",
                 lambda delta,
