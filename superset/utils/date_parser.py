@@ -183,8 +183,8 @@ def get_since_until(  # pylint: disable=too-many-arguments,too-many-locals,too-m
     if time_range == NO_TIME_RANGE or time_range == _(NO_TIME_RANGE):
         return None, None
 
-    if time_range and time_range.startswith("Last") and separator not in time_range:
-        time_range = time_range + separator + _relative_end
+    # if time_range and time_range.startswith("Last") and separator not in time_range:
+    #     time_range = time_range + separator + _relative_end
 
     if time_range and time_range.startswith("Next") and separator not in time_range:
         time_range = _relative_start + separator + time_range
@@ -212,32 +212,31 @@ def get_since_until(  # pylint: disable=too-many-arguments,too-many-locals,too-m
         and time_range.startswith("Last day")
         and separator not in time_range
     ):
-        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, DAY), DAY) : DATETIME('today')"
+        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, DAY), DAY) : DATETRUNC(DATEADD(DATETIME('today'), 0, DAY), DAY)"  # pylint: disable=line-too-long,useless-suppression
     if (
         time_range
         and time_range.startswith("Last week")
         and separator not in time_range
     ):
-        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, WEEK), WEEK) : DATETRUNC(DATETIME('today'), WEEK)"  # pylint: disable=line-too-long,useless-suppression
+        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, WEEK), WEEK) : DATETRUNC(DATEADD(DATETIME('today'), 0, WEEK), WEEK)"  # pylint: disable=line-too-long,useless-suppression
     if (
         time_range
         and time_range.startswith("Last month")
         and separator not in time_range
     ):
-        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, MONTH), MONTH) : DATETRUNC(DATETIME('today'), MONTH)"  # pylint: disable=line-too-long,useless-suppression
-    if (
-        time_range
-        and time_range.startswith("Last year")
-        and separator not in time_range
-    ):
-        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, YEAR), YEAR) : DATETRUNC(DATETIME('today'), YEAR)"
-
+        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, MONTH), MONTH) : DATETRUNC(DATEADD(DATETIME('today'), 0, MONTH), MONTH)"  # pylint: disable=line-too-long,useless-suppression
     if (
         time_range
         and time_range.startswith("Last quarter")
         and separator not in time_range
     ):
-        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, QUARTER), QUARTER) : DATETRUNC(DATETIME('today'), QUARTER)"
+        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, QUARTER), QUARTER) : DATETRUNC(DATEADD(DATETIME('today'), 0, QUARTER), QUARTER)"  # pylint: disable=line-too-long,useless-suppression
+    if (
+        time_range
+        and time_range.startswith("Last year")
+        and separator not in time_range
+    ):
+        time_range = "DATETRUNC(DATEADD(DATETIME('today'), -1, YEAR), YEAR) : DATETRUNC(DATEADD(DATETIME('today'), 0, YEAR), YEAR)" 
 
     if (
         time_range
