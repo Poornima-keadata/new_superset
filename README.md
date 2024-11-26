@@ -153,7 +153,7 @@ GLOBAL_ASYNC_QUERIES_JWT_COOKIE_NAME = "async-token"
 GLOBAL_ASYNC_QUERIES_JWT_COOKIE_SECURE = False
 GLOBAL_ASYNC_QUERIES_JWT_COOKIE_SAMESITE: None
 GLOBAL_ASYNC_QUERIES_JWT_COOKIE_DOMAIN = None
-GLOBAL_ASYNC_QUERIES_JWT_SECRET = "bPNUGxELYWF3UzQck+mix3gmDTeicznzZtrEibBvmeQxR4V6+GWLs3As+sSVOhru3eBe9jl2D4XSg55iBf6Vurhyho4de3wQq+cnQId5WI8="
+GLOBAL_ASYNC_QUERIES_JWT_SECRET = "="
 GLOBAL_ASYNC_QUERIES_TRANSPORT = "polling"
 GLOBAL_ASYNC_QUERIES_POLLING_DELAY = int(
     timedelta(milliseconds=500).total_seconds() * 1000
@@ -238,9 +238,9 @@ SMTP_PORT = 587 # your port, e.g. 587
 SMTP_STARTTLS = True
 SMTP_SSL_SERVER_AUTH = False # If your using an SMTP server with a valid certificate
 SMTP_SSL = False
-SMTP_USER = "no-reply@kea-data.com" # use the empty string "" if using an unauthenticated SMTP server
+SMTP_USER = "no-reply@kexample.com" # use the empty string "" if using an unauthenticated SMTP server
 SMTP_PASSWORD = "" # use the empty string "" if using an unauthenticated SMTP server   --------------------------CHANGE THIS----------------------
-SMTP_MAIL_FROM = "no-reply@kea-data.com"
+SMTP_MAIL_FROM = "no-reply@kexample.com"
 EMAIL_REPORTS_SUBJECT_PREFIX = "[RMS CRM Alert] " # optional - overwrites default value in config.py of "[Report]
 EMAIL_REPORTS_CTA = "Explore in Dashboard"
 
