@@ -1,4 +1,4 @@
-###Setting up the Apache Superset custom build
+### Setting up the Apache Superset custom build
 
 1. Clone this repository https://github.com/DGM-Tech-Solutions/superset.git
 2. replace the .env file inside the docker directory
