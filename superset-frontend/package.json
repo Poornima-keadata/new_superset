@@ -346,7 +346,7 @@
     "storybook": "8.1.11",
     "style-loader": "^4.0.0",
     "thread-loader": "^4.0.2",
-    "ts-loader": "^9.5.1",
+    "ts-loader": "^9.5.4",
     "typescript": "^4.8.4",
     "vm-browserify": "^1.1.2",
     "webpack": "^5.94.0",
