@@ -22,7 +22,9 @@ ARG PY_VER=3.10-slim-bookworm
 
 # if BUILDPLATFORM is null, set it to 'amd64' (or leave as is otherwise).
 ARG BUILDPLATFORM=${BUILDPLATFORM:-amd64}
-FROM --platform=${BUILDPLATFORM} node:20-bullseye-slim AS superset-node
+#FROM --platform=${BUILDPLATFORM} node:20-bullseye-slim AS superset-node
+FROM node:20-bullseye-slim AS superset-node
+
 
 ARG NPM_BUILD_CMD="build"
 
