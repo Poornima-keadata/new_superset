@@ -50,7 +50,9 @@ services:
     restart: unless-stopped
     ports:
       - "8088:8088"
-    depends_on: *superset-depends-on
+    #depends_on: *superset-depends-on
+    #depends_on:
+    #  - superset_postgres
     volumes: *superset-volumes
     networks:
       - superset_net
