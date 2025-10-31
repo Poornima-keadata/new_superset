@@ -29,16 +29,16 @@ services:
     networks:
       - superset_net
 
-  db:
-    image: postgres:15
-    container_name: superset_db
-    restart: unless-stopped
-    env_file: docker/.env
-    volumes:
-      - db_data:/var/lib/postgresql/data
-      - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-    networks:
-      - superset_net
+  # db:
+  #   image: postgres:15
+  #   container_name: superset_db
+  #   restart: unless-stopped
+  #   env_file: docker/.env
+  #   volumes:
+  #     - db_data:/var/lib/postgresql/data
+  #     - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+  #   networks:
+  #     - superset_net
 
   superset:
     container_name: superset_app
@@ -110,7 +110,9 @@ volumes:
 
 networks:
   superset_net:
-    driver: bridge
+    #driver: bridge
+    external: true
+    name: superset_net
 
 # #
 # # Licensed to the Apache Software Foundation (ASF) under one or more
