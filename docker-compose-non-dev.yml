@@ -6,7 +6,7 @@ version: "3.9"
 # -----------------------------------------------------------------------
 
 x-superset-depends-on: &superset-depends-on
-  - db
+  #- db
   - redis
 
 x-superset-volumes: &superset-volumes
@@ -63,7 +63,7 @@ services:
       <<: *common-build
     command: ["/app/docker/docker-init.sh"]
     env_file: docker/.env
-    depends_on: *superset-depends-on
+    #depends_on: *superset-depends-on
     user: "root"
     volumes: *superset-volumes
     healthcheck:
@@ -78,7 +78,7 @@ services:
     command: ["/app/docker/docker-bootstrap.sh", "worker"]
     env_file: docker/.env
     restart: unless-stopped
-    depends_on: *superset-depends-on
+    #depends_on: *superset-depends-on
     user: "root"
     volumes: *superset-volumes
     healthcheck:
@@ -97,7 +97,7 @@ services:
     command: ["/app/docker/docker-bootstrap.sh", "beat"]
     env_file: docker/.env
     restart: unless-stopped
-    depends_on: *superset-depends-on
+    #depends_on: *superset-depends-on
     user: "root"
     volumes: *superset-volumes
     healthcheck:
